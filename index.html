@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>keyspace — password strength checker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <main class="wrap">
+    <header class="head">
+      <div class="brand">
+        <span class="brand-mark">▮▮▯</span>
+        <span class="brand-name">keyspace</span>
+      </div>
+      <p class="tagline">a password is just a number. this measures how big the number is.</p>
+    </header>
+
+    <section class="terminal" role="group" aria-label="password strength checker">
+      <div class="terminal-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="terminal-title">/dev/entropy</span>
+      </div>
+
+      <div class="terminal-body">
+        <label class="field-label" for="pw">$ input password</label>
+        <div class="input-row">
+          <span class="prompt">&gt;</span>
+          <input id="pw" type="password" autocomplete="new-password" spellcheck="false" placeholder="start typing..." />
+          <button id="toggle" type="button" aria-label="show password">show</button>
+        </div>
+
+        <div class="meter" role="meter" aria-label="password strength" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0" id="meter">
+          <span class="seg" data-i="0"></span>
+          <span class="seg" data-i="1"></span>
+          <span class="seg" data-i="2"></span>
+          <span class="seg" data-i="3"></span>
+        </div>
+
+        <div class="verdict-row">
+          <span class="verdict" id="verdict">—</span>
+          <span class="crack" id="crack"></span>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-label">length</span>
+            <span class="stat-val" id="statLen">0</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">entropy</span>
+            <span class="stat-val" id="statEntropy">0.0 <small>bits</small></span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">charset</span>
+            <span class="stat-val" id="statCharset">0</span>
+          </div>
+        </div>
+
+        <ul class="checks" id="checks">
+          <li data-key="len8"><span class="box"></span>at least 8 characters</li>
+          <li data-key="len12"><span class="box"></span>12+ characters (recommended)</li>
+          <li data-key="lower"><span class="box"></span>lowercase letter</li>
+          <li data-key="upper"><span class="box"></span>uppercase letter</li>
+          <li data-key="digit"><span class="box"></span>number</li>
+          <li data-key="symbol"><span class="box"></span>symbol</li>
+          <li data-key="nocommon"><span class="box"></span>not a common password</li>
+          <li data-key="norepeat"><span class="box"></span>no long repeated runs (e.g. aaaa)</li>
+          <li data-key="noseq"><span class="box"></span>no obvious sequences (e.g. abcd, 1234)</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <p>everything happens in your browser. nothing you type here is sent anywhere.</p>
+    </footer>
+  </main>
+
+<script src="script.js"></script>
+</body>
+</html>
